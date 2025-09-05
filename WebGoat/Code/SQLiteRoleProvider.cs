@@ -16,6 +16,7 @@ namespace TechInfoSystems.Data.SQLite
 		#region Private Fields
 
 		private const string HTTP_TRANSACTION_ID = "SQLiteTran";
+		private const string connectionString = "Data Source=:memory:;Version=3;New=True;";
 		private const string APP_TB_NAME = "[aspnet_Applications]";
 		private const string ROLE_TB_NAME = "[aspnet_Roles]";
 		private const string USER_TB_NAME = "[aspnet_Users]";
@@ -339,7 +340,7 @@ namespace TechInfoSystems.Data.SQLite
 		{
 			string tmpRoleNames = String.Empty;
 
-			SqliteConnection cn = GetDbConnectionForRole ();
+			SqliteConnection cn = GetDbConnectionForRole (connectionString);
 			try {
 				using (SqliteCommand cmd = cn.CreateCommand()) {
 					cmd.CommandText = "SELECT RoleName FROM " + ROLE_TB_NAME + " WHERE ApplicationId = $ApplicationId";
